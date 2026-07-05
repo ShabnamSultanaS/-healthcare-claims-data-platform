@@ -1,0 +1,59 @@
+# Pipeline configuration — single source of truth for paths and DQ rules.
+
+paths:
+  raw_zone: data/raw
+  quarantine_zone: data/quarantine
+  reports: data/reports
+  warehouse: warehouse/claims.duckdb
+
+datasets:
+  members:
+    file: members.csv
+    rules:
+      - type: unique
+        column: member_id
+        description: Member ID must be unique (dedupe duplicate extracts)
+      - type: not_null
+        column: county
+        description: County required for regional reporting
+      - type: regex_match
+        column: member_id
+        pattern: "^MBR\\d{6}$"
+        description: Member ID must match MBR###### format
+
+  providers:
+    file: providers.csv
+    rules:
+      - type: unique
+        column: provider_id
+        description: Provider ID must be unique
+      - type: not_null
+        column: specialty
+        description: Specialty required for claims categorisation
+
+  claims:
+    file: claims.csv
+    rules:
+      - type: unique
+        column: claim_id
+        description: Duplicate claim submissions must be quarantined
+      - type: min_value
+        column: billed_amount_eur
+        threshold: 0
+        description: Billed amount cannot be negative
+      - type: allowed_values
+        column: claim_status
+        values: [APPROVED, REJECTED, PENDING, UNDER_REVIEW]
+        description: Status must be a valid lifecycle state
+      - type: date_order
+        column_a: service_date
+        column_b: submitted_date
+        description: Service date cannot be after submission date
+      - type: referential
+        column: member_id
+        reference: members
+        description: Claim must reference a known member
+      - type: referential
+        column: provider_id
+        reference: providers
+        description: Claim must reference a known provider
