@@ -1,6 +1,6 @@
 # Healthcare Claims Data Platform
 
-![CI](https://github.com/YOUR_USERNAME/healthcare-claims-data-platform/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/ShabnamSultanaS/healthcare-claims-data-platform/actions/workflows/main.yml/badge.svg)
 ![Python](https://img.shields.io/badge/python-3.12-blue)
 ![DuckDB](https://img.shields.io/badge/warehouse-DuckDB-yellow)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -72,7 +72,7 @@ flowchart LR
 ## Quickstart
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/healthcare-claims-data-platform.git
+git clone https://github.com/ShabnamSultanaS/healthcare-claims-data-platform.git
 cd healthcare-claims-data-platform
 
 pip install -r requirements.txt
@@ -174,4 +174,4 @@ queries answering real business questions:
 
 **Shabnam Sultana** — Data Management Analyst, Dublin
 MSc Data Analytics (Dublin Business School) · Microsoft Certified: Azure Data Fundamentals (DP-900)
-[LinkedIn](https://www.linkedin.com/in/YOUR_PROFILE) · Experience across SQL/T-SQL, Power BI, Python, SSIS/SSRS, ETL/ELT, and data governance
+[LinkedIn](https://www.linkedin.com/in/shabnamsultanas/) · Experience across SQL/T-SQL, Power BI, Python, SSIS/SSRS, ETL/ELT, and data governance
